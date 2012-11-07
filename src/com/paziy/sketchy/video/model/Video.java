@@ -1,13 +1,8 @@
 package com.paziy.sketchy.video.model;
 
-/**
- * Created with IntelliJ IDEA.
- * User: Slayer
- * Date: 07.11.12
- * Time: 14:13
- * To change this template use File | Settings | File Templates.
- */
-public class Video {
+import com.paziy.sketchy.parsers.Parseable;
+
+public class Video extends Parseable implements Cloneable {
     private String vid;
     private String owner_id;
     private String title;
@@ -18,7 +13,9 @@ public class Video {
     private String date;
     private String player;
 
-    public Video(String date, String description, String duration, String image, String link, String owner_id, String player, String title, String vid) {
+    public Video(String date, String description, String duration,
+                 String image, String link, String owner_id,
+                 String player, String title, String vid) {
         this.date = date;
         this.description = description;
         this.duration = duration;
@@ -110,5 +107,10 @@ public class Video {
         int dur = Integer.parseInt(duration);
 
         return title + " " + String.format("%02d", (dur / 60)) + ":" + String.format("%02d", (dur % 60));
+    }
+
+    @Override
+    public Object clone() throws CloneNotSupportedException {
+        return new Video(date, description, duration, image, link, owner_id, player, title, vid);
     }
 }
