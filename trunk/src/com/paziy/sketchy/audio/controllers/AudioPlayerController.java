@@ -1,23 +1,21 @@
 package com.paziy.sketchy.audio.controllers;
 
 import com.paziy.sketchy.audio.model.Audio;
+import com.paziy.sketchy.audio.model.AudioFactory;
+import com.paziy.sketchy.controllers.PlayerController;
+import com.paziy.sketchy.parsers.Parser;
 import com.paziy.sketchy.request.controllers.RequestController;
 import com.paziy.sketchy.request.controllers.VKUrlManager;
 
 import javax.net.ssl.HttpsURLConnection;
 import java.util.List;
 
-/**
- * Created with IntelliJ IDEA.
- * User: Slayer
- * Date: 06.11.12
- * Time: 19:03
- * To change this template use File | Settings | File Templates.
- */
-public class AudioPlayerController {
+public class AudioPlayerController extends PlayerController<Audio>{
+    public static final String WRAPPER_TAG = "audio";
     private VKUrlManager manager;
 
     public AudioPlayerController(VKUrlManager manager) {
+        super(new Parser<Audio>(new AudioFactory(), WRAPPER_TAG));
         this.manager = manager;
     }
 
@@ -26,7 +24,6 @@ public class AudioPlayerController {
 
         try {
             HttpsURLConnection con = RequestController.sendRequest(manager.audioGet());
-            AudioRecordsParser parser = new AudioRecordsParser();
             result = parser.parse(con.getInputStream());
         } catch (Exception ex) {
             ex.printStackTrace();

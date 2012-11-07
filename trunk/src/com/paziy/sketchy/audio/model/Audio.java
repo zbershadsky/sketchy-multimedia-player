@@ -1,6 +1,8 @@
 package com.paziy.sketchy.audio.model;
 
-public class Audio {
+import com.paziy.sketchy.parsers.Parseable;
+
+public class Audio extends Parseable implements Cloneable{
     private String aid;
     private String ownerId;
     private String artist;
@@ -9,6 +11,21 @@ public class Audio {
     private String url;
     private String lyricsId;
     private String album;
+
+    public Audio(String aid, String album, String artist, String duration, String lyricsId, String ownerId, String title, String url) {
+        this.aid = aid;
+        this.album = album;
+        this.artist = artist;
+        this.duration = duration;
+        this.lyricsId = lyricsId;
+        this.ownerId = ownerId;
+        this.title = title;
+        this.url = url;
+    }
+
+    public Audio() {
+
+    }
 
     public String getAid() {
         return aid;
@@ -79,5 +96,10 @@ public class Audio {
         int dur = Integer.parseInt(duration);
 
         return artist + " - " + title + " " + String.format("%02d", (dur / 60)) + ":" + String.format("%02d", (dur % 60));
+    }
+
+    @Override
+    public Object clone() {
+        return new Audio(aid, album, artist, duration, lyricsId, ownerId, title, url);
     }
 }
