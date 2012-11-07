@@ -54,4 +54,18 @@ public class VKUrlManager {
 	public URL logout() throws MalformedURLException {
 		return new URL(LOGOUT);
 	}
+
+    public URL videoGet() throws MalformedURLException {
+        String urlString = REQUEST_BASE_URL + METHOD_VIDEO + AND +
+                ACCESS_TOKEN + user.getAccessToken();
+
+        return new URL(urlString);
+    }
+
+    public URL videoGet(ParameterList params) throws MalformedURLException {
+        String urlString = REQUEST_BASE_URL + METHOD_VIDEO + params.toString() + AND +
+                ACCESS_TOKEN + user.getAccessToken();
+
+        return new URL(urlString);
+    }
 }
