@@ -6,6 +6,7 @@ import com.paziy.sketchy.authentication.view.LoginWindow;
 import com.paziy.sketchy.player.fx.MainWindowController;
 import com.paziy.sketchy.player.fx.View;
 import com.paziy.sketchy.request.controllers.VKUrlManager;
+import com.paziy.sketchy.video.controllers.VideoPlayerController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -18,6 +19,7 @@ import java.net.URL;
 public class ApplicationController extends Application {
 	private static ApplicationController instance;
     private AudioPlayerController audioController;
+    private VideoPlayerController videoController;
 	
 	public ApplicationController() {
 	}
@@ -40,14 +42,16 @@ public class ApplicationController extends Application {
 
         VKUrlManager manager = new VKUrlManager(auth.login());
         audioController = new AudioPlayerController(manager);
+        videoController = new VideoPlayerController(manager);
         URL location = View.class.getResource("MainWindow.fxml");
 
         FXMLLoader fxmlLoader = new FXMLLoader();
         fxmlLoader.setLocation(location);
         Pane pane = (Pane) fxmlLoader.load();
         MainWindowController controller = (MainWindowController)fxmlLoader.getController();
-        controller.setController(audioController);
-        controller.setRecords();
+        controller.setAudioPlayerController(audioController);
+        controller.setVideoPlayerController(videoController);
+        controller.setAudioRecords();
         Scene scene = new Scene(pane);
 
         stage.setScene(scene);
