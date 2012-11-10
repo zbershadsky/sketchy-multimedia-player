@@ -15,8 +15,12 @@ public class VKUrlManager {
 	public VKUrlManager(AuthInfo user) {
 		this.user = user;
 	}
-	
-	private static String generateScope(Scope ... scopes) {
+
+    public AuthInfo getUser() {
+        return user;
+    }
+
+    private static String generateScope(Object ... scopes) {
 		String result = "";
 		
 		for (int index = 0; index < scopes.length - 1; ++index) {
@@ -65,6 +69,20 @@ public class VKUrlManager {
     public URL videoGet(ParameterList params) throws MalformedURLException {
         String urlString = REQUEST_BASE_URL + METHOD_VIDEO + params.toString() + AND +
                 ACCESS_TOKEN + user.getAccessToken();
+
+        return new URL(urlString);
+    }
+
+    public URL getCurrentUserInfo() throws MalformedURLException {
+        String urlString = REQUEST_BASE_URL + METHOD_USERS + USERS_UIDS + user.getUserId() + AND + USERS_FIELDS + AND +
+                ACCESS_TOKEN + user.getAccessToken();
+
+        return new URL(urlString);
+    }
+
+    public URL getUsersInfo(String[] users) throws MalformedURLException {
+        String urlString = REQUEST_BASE_URL + METHOD_USERS + USERS_UIDS + generateScope(users) + AND +
+                USERS_FIELDS + ACCESS_TOKEN + user.getAccessToken();
 
         return new URL(urlString);
     }

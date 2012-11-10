@@ -49,22 +49,26 @@ public class VKUrlManagerConstants {
 	
 	//Audio
 	public static String METHOD_AUDIO = "audio.get.xml?";
-	public static String AUDIO_UID = "uid";
-	public static String AUDIO_GID = "gid";
-	public static String AUDIO_ALBUM_ID = "album_id";
-	public static String AUDIO_AIDS = "aids";
-	public static String AUDIO_NEED_USER = "need_user";
-	public static String AUDIO_COUNT = "count";
-	public static String AUDIO_OFFSET = "offset";
+	public static String AUDIO_UID = "uid=";
+	public static String AUDIO_GID = "gid=";
+	public static String AUDIO_ALBUM_ID = "album_id=";
+	public static String AUDIO_AIDS = "aids=";
+	public static String AUDIO_NEED_USER = "need_user=";
+	public static String AUDIO_COUNT = "count=";
+	public static String AUDIO_OFFSET = "offset=";
 
     //Video
     public static String METHOD_VIDEO = "video.get.xml?";
-    public static String VIDEO_VIDEOS= "videos";
-    public static String VIDEO_UID = "uid";
-    public static String VIDEO_GID = "gid";
-    public static String VIDEO_AID = "aid";
-    public static String VIDEO_WIDTH = "width";
-    public static String VIDEO_COUNT = "count";
-    public static String VIDEO_OFFSET = "offset";
-	
+    public static String VIDEO_VIDEOS= "videos=";
+    public static String VIDEO_UID = "uid=";
+    public static String VIDEO_GID = "gid=";
+    public static String VIDEO_AID = "aid=";
+    public static String VIDEO_WIDTH = "width=";
+    public static String VIDEO_COUNT = "count=";
+    public static String VIDEO_OFFSET = "offset=";
+
+    //Users
+    public static String METHOD_USERS = "users.get.xml?";
+    public static String USERS_UIDS= "uids=";
+    public static String USERS_FIELDS = "fields=nickname,photo,photo_medium,photo_big,online";
 }
