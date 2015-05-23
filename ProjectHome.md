@@ -1,0 +1,1 @@
+Standalone media player from VK, based on VK API
